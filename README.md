@@ -13,7 +13,7 @@ A local copy of Chrome is not installed to keep things lean. **TODO**: Optionall
 ## Usage
 
 ```ts
-import { chromeProgrammaticAuthentication, UT_DIRECT_URL } from 'ut-auth-utils'
+import { chromeProgrammaticAuthentication, UT_DIRECT_URL } from '@an-gg/ut-auth-utils'
 
 let cookies = await chromeProgrammaticAuthentication('UT EID', 'password', UT_DIRECT_URL);
 // You will get 2FA request. Programmatic auth always picks 'Duo Push' as factor
