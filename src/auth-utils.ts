@@ -30,7 +30,6 @@ export async function chromeProgrammaticAuthentication(username:string, password
 
    let chrome = await puppeteer.launch({
       channel: 'chrome',
-      headless: false
    });
    let page = await chrome.newPage();
    await page.goto(relay_url);
