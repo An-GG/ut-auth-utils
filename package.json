@@ -8,7 +8,7 @@
   },
   "name": "@an-gg/ut-auth-utils",
   "description": "Authenticate into UT Austin applications and retreive session cookies so you can make your own programatic API requests.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/auth-utils.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
