@@ -40,15 +40,16 @@ export async function chromeProgrammaticAuthentication(username: string, passwor
     await page.click('input[type=submit]');
 
     // form error watchdog
-    (async () => {
+    let err_watch = ((async () => {
         let err_element = await page.waitForSelector('.form-error');
         let err_text = await err_element.evaluate(el => el.textContent, err_element);
         throw new Error('Login failed. Maybe invalid credentials?\n\nClient Message: \'' + err_text + '\'\n\n');
-    })();
+    })());
 
     await page.waitForFrame(async (f) => {
         return f.url().match(/https:\/\/.+\.duosecurity\.com\/frame\/prompt/) != null;
     });
+    err_watch.catch((r)=>{}); // prevent from throwing, we're past the login page so it should not throw
 
     let duoframe = page.frames()[1];
     await duoframe.$eval('#auth_methods > fieldset:nth-child(1) > div.row-label.push-label > button', (el) => {
