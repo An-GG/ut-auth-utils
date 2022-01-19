@@ -5,9 +5,9 @@
   "dependencies": {
     "puppeteer-core": "^13.0.1"
   },
-  "name": "@an-gg/ut-auth-utils",
+  "name": "ut-auth-utils",
   "description": "Authenticate into UT Austin applications and retreive session cookies so you can make your own programatic API requests.",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "dist/auth-utils.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
