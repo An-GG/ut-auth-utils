@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "devDependencies": {
     "@types/node": "^17.0.8"
   },
@@ -8,7 +7,7 @@
   },
   "name": "@an-gg/ut-auth-utils",
   "description": "Authenticate into UT Austin applications and retreive session cookies so you can make your own programatic API requests.",
-  "version": "1.0.4",
+  "version": "1.1.4",
   "main": "dist/auth-utils.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

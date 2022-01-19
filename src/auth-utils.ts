@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer-core';
+import * as puppeteer from 'puppeteer-core';
 import { URL } from 'url';
 
 
@@ -43,7 +43,7 @@ export async function chromeProgrammaticAuthentication(username: string, passwor
     let err_watch = ((async () => {
         let err_element = await page.waitForSelector('.form-error');
         let err_text = await err_element.evaluate(el => el.textContent, err_element);
-        throw new Error('Login failed. Maybe invalid credentials?\n\nClient Message: \'' + err_text + '\'\n\n');
+        throw new Error('Login failed. Maybe invalid credentials?\n\tUT Direct Error Message: \'' + err_text + '\'\n\n');
     })());
 
     await page.waitForFrame(async (f) => {
