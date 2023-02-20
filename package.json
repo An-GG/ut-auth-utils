@@ -1,17 +1,11 @@
 {
-  "devDependencies": {
-    "@types/node": "^17.0.8"
-  },
-  "dependencies": {
-    "puppeteer-core": "^13.0.1"
-  },
   "name": "ut-auth-utils",
   "description": "Authenticate into UT Austin applications and retreive session cookies so you can make your own programatic API requests.",
   "version": "1.1.5",
   "main": "dist/auth-utils.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "rm -rf dist && tsc --build tsconfig.json"
+    "prepare": "rm -rf dist && npx tsc --build tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -22,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/An-GG/ut-auth-utils/issues"
   },
-  "homepage": "https://github.com/An-GG/ut-auth-utils#readme"
+  "homepage": "https://github.com/An-GG/ut-auth-utils#readme",
+  "dependencies": {
+    "@types/jsdom": "^21.1.0",
+    "jsdom": "^21.1.0",
+    "puppeteer": "^19.7.1"
+  }
 }

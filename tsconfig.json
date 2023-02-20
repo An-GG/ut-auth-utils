@@ -10,9 +10,12 @@
       "outDir": "dist",
       "esModuleInterop": false,
       "allowSyntheticDefaultImports": false,
-      "resolveJsonModule": false
+      "resolveJsonModule": false,
+      "skipLibCheck": true,
+      "lib": ["ESNext", "DOM"]
   },
   "include": [
-      "src/**/*"
+      "src/*.ts",
+      "src/tests/*.ts"
   ]
 }
