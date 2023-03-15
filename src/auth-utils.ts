@@ -14,7 +14,7 @@ export const UTAustinDestinations = {
  * Login graphically with Google Chrome.
  * @param relay_url The location from which the login request originates, ex. UT Direct or Canvas
  */
-export async function chromeGUIAuthentication(relay_url: string, cookies?: {name:string, value:string}[]) {
+export async function chromeGUIAuthentication(relay_url: string, cookies?: {name:string, value:string, [k:string]:any}[]) {
     let chrome = await puppeteer.launch({
         headless: false
     });
