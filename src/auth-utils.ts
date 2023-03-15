@@ -19,7 +19,19 @@ export async function chromeGUIAuthentication(relay_url: string, cookies?: {name
         headless: false
     });
     let page = await chrome.newPage();
-    if (cookies) { page.setCookie(...cookies); }
+    if (cookies) {
+        for (let c of cookies) {
+            page.setCookie({
+                ...c,
+                domain: "duosecurity.com"
+            }); 
+
+            page.setCookie({
+                ...c,
+                domain: "utexas.edu"
+            }); 
+        }
+    }
     await page.goto(relay_url);
 
     return _waitForCookies(page, chrome, relay_url);
