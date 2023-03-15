@@ -3,38 +3,35 @@ import * as repl from 'repl';
 import * as proc from 'process';
 import { URL } from 'url';
 import { JSDOM } from 'jsdom'
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 export const UTAustinDestinations = {
     UT_DIRECT_URL:'https://utdirect.utexas.edu/',
     UT_CANVAS_URL:'https://utexas.instructure.com/'
 }
 
+export const DEFAULT_COOKIE_FILE = '/tmp/ut-auth-utils.cookies.json'
 
 /**
  * Login graphically with Google Chrome.
  * @param relay_url The location from which the login request originates, ex. UT Direct or Canvas
  */
-export async function chromeGUIAuthentication(relay_url: string, cookies?: {name:string, value:string, [k:string]:any}[]) {
-    let chrome = await puppeteer.launch({
-        headless: false
-    });
-    let page = await chrome.newPage();
-    if (cookies) {
-        for (let c of cookies) {
-            page.setCookie({
-                ...c,
-                domain: "duosecurity.com"
-            }); 
+export async function chromeGUIAuthentication(relay_url: string, cookie_file?:string) {
+    cookie_file = cookie_file ? cookie_file : DEFAULT_COOKIE_FILE;
 
-            page.setCookie({
-                ...c,
-                domain: "utexas.edu"
-            }); 
-        }
-    }
+    let old_cookies:puppeteer.Protocol.Network.Cookie[] = [];
+    if (existsSync(cookie_file)) { old_cookies = JSON.parse(readFileSync(cookie_file).toString()) } 
+    
+    let chrome = await puppeteer.launch({ headless: false });
+    let page = await chrome.newPage();
+    
+    
+    await page.setCookie(...old_cookies);
     await page.goto(relay_url);
 
-    return _waitForCookies(page, chrome, relay_url);
+    let c = await _waitForCookies(page, chrome, relay_url);
+    writeFileSync(cookie_file, JSON.stringify(c));
+
 }
 
 async function _waitForCookies(page: puppeteer.Page, chrome: puppeteer.Browser, final_destination: string) {
