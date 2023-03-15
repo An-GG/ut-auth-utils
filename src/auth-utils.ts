@@ -1,8 +1,5 @@
 import * as puppeteer from 'puppeteer';
-import * as repl from 'repl';
-import * as proc from 'process';
 import { URL } from 'url';
-import { JSDOM } from 'jsdom'
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 export const UTAustinDestinations = {
@@ -39,9 +36,9 @@ async function _waitForCookies(page: puppeteer.Page, chrome: puppeteer.Browser, 
     return new Promise<puppeteer.Protocol.Network.Cookie[]>(async (resolve, reject) => {
         await page.on('framenavigated', async (event) => {
             if ((new URL(page.url())).host == (new URL(final_destination)).host) {
-                let res = await page.cookies();
+                let res = await (await page.target().createCDPSession()).send('Network.getAllCookies');
                 await chrome.close();
-                resolve(res);
+                resolve(res.cookies);
             }
         });
     });
