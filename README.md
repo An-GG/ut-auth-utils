@@ -13,9 +13,9 @@ $ npm i ut-auth-utils
 ## Usage
 
 ```ts
-import { chromeGUIAuthentication, UT_DIRECT_URL } from 'ut-auth-utils'
+import { chromeGUIAuthentication, UTAustinDestinations } from 'ut-auth-utils'
 
-let cookies = await chromeGUIAuthentication(UT_DIRECT_URL);
+let cookies = await chromeGUIAuthentication(UUTAustinDestinations.UT_DIRECT_URL);
 
 // Now you can use the cookies to make your own API calls.
 import fetch from 'node-fetch';
