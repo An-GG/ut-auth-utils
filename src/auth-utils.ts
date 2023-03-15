@@ -31,6 +31,7 @@ export async function chromeGUIAuthentication(relay_url: string, cookie_file?:st
 
     let c = await _waitForCookies(page, chrome, relay_url);
     writeFileSync(cookie_file, JSON.stringify(c));
+    return c;
 
 }
 
