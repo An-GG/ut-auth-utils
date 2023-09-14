@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/An-GG/ut-auth-utils#readme",
   "dependencies": {
-    "puppeteer": "^19.7.1",
+    "node-fetch": "^3.3.2",
+    "puppeteer": "^21.2.1",
     "typescript": "^4.9.5"
   }
 }
